@@ -179,7 +179,7 @@ class ModelResourceTest(TestCase):
 
             class Meta:
                 model = Book
-                fields = ('author__name', 'full_title')
+                fields = ('full_title')
 
             def dehydrate_full_title(self, obj):
                 return '%s by %s' % (obj.name, obj.author.name)
