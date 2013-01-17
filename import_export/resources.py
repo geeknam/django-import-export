@@ -316,7 +316,8 @@ class ModelDeclarativeMetaclass(DeclarativeMetaclass):
                     attrs = field_name.split('__')
                     for attr in attrs[0:-1]:
                         f = model._meta.get_field_by_name(attr)[0]
-                        model = f.rel.to
+                        if f.rel:
+                            model = f.rel.to
                     f = model._meta.get_field_by_name(attrs[-1])[0]
 
                     FieldWidget = new_class.widget_from_django_field(f)
